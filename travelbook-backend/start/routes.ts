@@ -8,6 +8,7 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
 const UsersController = () => import('#controllers/users_controller')
 
 /*router.get('/', [UsersController, 'index'])*/

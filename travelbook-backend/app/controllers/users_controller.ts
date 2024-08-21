@@ -10,7 +10,12 @@ export default class UsersController {
   /*TODO Create validator */
   constructor(protected userService: UserService) {}
 
-  async all({}: HttpContext) {
+  async all({ auth }: HttpContext) {
+    // Check if user authenticated to get access to the route
+    /*await auth.authenticate()
+    if (auth.isAuthenticated) {
+      return User.all()
+    }*/
     return User.all()
   }
 
@@ -34,9 +39,10 @@ export default class UsersController {
     const token = await User.accessTokens.create(user, ['*'], {
       expiresIn: '30 days',
     })
-
-    user.currentAccessToken = token
     return {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
       value: token.value!.release(),
     }
   }
