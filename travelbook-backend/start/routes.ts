@@ -14,6 +14,7 @@ const UsersController = () => import('#controllers/users_controller')
 router
   .group(() => {
     router.post('signup', [UsersController, 'signup'])
+    router.post('login', [UsersController, 'login'])
 
     router.get('users/all', [UsersController, 'all'])
   })
