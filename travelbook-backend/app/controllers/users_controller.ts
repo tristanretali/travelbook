@@ -19,18 +19,29 @@ export default class UsersController {
     return User.all()
   }
 
-  async signup({ request, response }: HttpContext) {
-    const email = request.input('email')
+  async signup({ request }: HttpContext) {
+    const { email, password, firstName, lastName } = request.only([
+      'email',
+      'password',
+      'firstName',
+      'lastName',
+    ])
+    /*const email = request.input('email')
     const password = request.input('password')
     const firstName = request.input('firstname')
-    const lastName = request.input('lastname')
+    const lastName = request.input('lastname')*/
 
     const user = await this.userService.createUser(email, password, firstName, lastName)
     await user.save()
-
-    return response.status(200).json({
-      status: 'ok',
+    const token = await User.accessTokens.create(user, ['*'], {
+      expiresIn: '30 days',
     })
+    return {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      value: token.value!.release(),
+    }
   }
 
   async login({ request }: HttpContext) {
