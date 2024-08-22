@@ -9,13 +9,14 @@ export default class HomeFrom extends React.Component{
         {
           this.props.signup === true ? <SignupForm
             signup={this.props.signup}
-            onSignupLoginChange={this.props.onSignupLoginChange}/>
+            onSignupLoginChange={this.props.onSignupLoginChange}
+            onHandleUserLogin={this.props.onHandleUserLogin}/>
             :
             <LoginForm
               signup={this.props.signup}
-              onSignupLoginChange={this.props.onSignupLoginChange}/>
+              onSignupLoginChange={this.props.onSignupLoginChange}
+              onHandleUserLogin={this.props.onHandleUserLogin}/>
         }
-
       </>
     )
   }

@@ -3,6 +3,7 @@ import React from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "../../utils/cn";
+import axios from 'axios'
 
 export default class LoginForm extends React.Component{
   constructor(props) {
@@ -13,7 +14,23 @@ export default class LoginForm extends React.Component{
 
   handleSubmit(e){
     e.preventDefault();
-    console.log("Form submitted");
+    const url = 'http://localhost:3333/api/login'
+    axios.post(url, {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    })
+      .then((response) => {
+        this.props.onHandleUserLogin(
+          {
+            email: response.data.email,
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+            token: response.data.value
+          })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   };
 
   goToSignup(){

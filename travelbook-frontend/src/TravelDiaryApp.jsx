@@ -5,8 +5,15 @@ export default class TravelDiaryApp extends React.Component{
   constructor(props) {
     super(props);
     this.handleSignupLoginChange = this.handleSignupLoginChange.bind(this);
+    this.handleUserLogin = this.handleUserLogin.bind(this);
     this.state = {
-      signup: true
+      signup: true,
+      user: {
+        email: '',
+        firstName: '',
+        lastName: '',
+        token: ''
+      }
     };
   }
 
@@ -14,8 +21,13 @@ export default class TravelDiaryApp extends React.Component{
     this.setState({signup : !this.state.signup});
   }
 
+  handleUserLogin(user){
+    this.setState({user : user})
+  }
+
   render(){
     const signup = this.state.signup;
+    console.log(this.state.user)
     return (
       <>
         <div className="min-w-96">
@@ -27,7 +39,8 @@ export default class TravelDiaryApp extends React.Component{
         </div>
         <HomeFrom
         signup={signup}
-        onSignupLoginChange={this.handleSignupLoginChange}/>
+        onSignupLoginChange={this.handleSignupLoginChange}
+        onHandleUserLogin={this.handleUserLogin}/>
       </>
   )
   }
