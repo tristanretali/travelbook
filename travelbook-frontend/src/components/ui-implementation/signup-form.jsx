@@ -77,7 +77,7 @@ export default class SignupForm extends  React.Component{
             Sign up &rarr;
           </button>
         </form>
-        <p className="text-neutral-800 ">Already have an account? <a href="#" onClick={this.goToLogin} className="underline underline-offset-2">Login</a></p>
+        <p className="text-neutral-800 ">Already have an account? <button onClick={this.goToLogin} className="underline underline-offset-2">Login</button></p>
       </div>
     );
   }

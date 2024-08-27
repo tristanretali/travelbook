@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeFrom from './HomeForm';
+import Navbar from './components/ui-implementation/navbar'
 
 export default class TravelDiaryApp extends React.Component{
   constructor(props) {
@@ -27,20 +28,28 @@ export default class TravelDiaryApp extends React.Component{
 
   render(){
     const signup = this.state.signup;
+    if (this.state.user.token === ''){
+      return (
+        <>
+          <div className="min-w-96">
+            <h1 className="text-4xl font-bold pl-52">
+              Welcome<br />
+              to your<br />
+              travel diary
+            </h1>
+          </div>
+          <HomeFrom
+            signup={signup}
+            onSignupLoginChange={this.handleSignupLoginChange}
+            onHandleUserLogin={this.handleUserLogin}/>
+        </>
+      )
+    }
     return (
       <>
-        <div className="min-w-96">
-          <h1 className="text-4xl font-bold pl-52">
-            Welcome<br />
-            to your<br />
-            travel diary
-          </h1>
-        </div>
-        <HomeFrom
-        signup={signup}
-        onSignupLoginChange={this.handleSignupLoginChange}
-        onHandleUserLogin={this.handleUserLogin}/>
+        <Navbar/>
       </>
     )
+
   }
 }
