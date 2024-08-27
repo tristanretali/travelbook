@@ -8,7 +8,6 @@ import { inject } from '@adonisjs/core'
 
 @inject()
 export default class UsersController {
-  /*TODO Create validator */
   constructor(protected userService: UserService) {}
 
   /*async all({ auth }: HttpContext) {

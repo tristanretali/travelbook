@@ -13,14 +13,15 @@ export default class SignupForm extends  React.Component{
   }
   handleSubmit(e){
     e.preventDefault()
-    /*TODO Crete file in utils for API request duplication*/
     const url = 'http://localhost:3333/api/signup'
-    axios.post(url, {
+    const data = {
       email: e.target.email.value,
       password: e.target.password.value,
       firstname: e.target.firstname.value,
-      lastname:  e.target.lastname.value
-    })
+      lastname: e.target.lastname.value
+    }
+
+    axios.post(url, data)
       .then((response) => {
         this.props.onHandleUserLogin(
           {

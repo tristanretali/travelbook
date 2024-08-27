@@ -27,7 +27,6 @@ export default class TravelDiaryApp extends React.Component{
 
   render(){
     const signup = this.state.signup;
-    console.log(this.state.user)
     return (
       <>
         <div className="min-w-96">
@@ -42,6 +41,6 @@ export default class TravelDiaryApp extends React.Component{
         onSignupLoginChange={this.handleSignupLoginChange}
         onHandleUserLogin={this.handleUserLogin}/>
       </>
-  )
+    )
   }
 }

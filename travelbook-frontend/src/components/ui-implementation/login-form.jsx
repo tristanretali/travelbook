@@ -15,10 +15,12 @@ export default class LoginForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     const url = 'http://localhost:3333/api/login'
-    axios.post(url, {
+    const data = {
       email: e.target.email.value,
       password: e.target.password.value,
-    })
+    }
+
+    axios.post(url, data)
       .then((response) => {
         this.props.onHandleUserLogin(
           {
