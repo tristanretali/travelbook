@@ -16,6 +16,6 @@ router
     router.post('signup', [UsersController, 'signup'])
     router.post('login', [UsersController, 'login'])
 
-    router.get('users/all', [UsersController, 'all'])
+    /*router.get('users/all', [UsersController, 'all'])*/
   })
   .prefix('/api')
