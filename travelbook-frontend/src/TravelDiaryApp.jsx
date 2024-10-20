@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeForm from './HomeForm';
 import Navbar from './components/ui-implementation/navbar'
+import ConnectedLayout from './ConnectedLayout'
 
 export default class TravelDiaryApp extends React.Component{
   constructor(props) {
@@ -14,7 +15,8 @@ export default class TravelDiaryApp extends React.Component{
         firstName: '',
         lastName: '',
         token: ''
-      }
+      },
+      currentLayout: ''
     };
   }
 
@@ -24,10 +26,12 @@ export default class TravelDiaryApp extends React.Component{
 
   handleUserLogin(user){
     this.setState({user : user})
+    this.setState({currentLayout: 'home'})
   }
 
   render(){
     const signup = this.state.signup;
+    const currentLayout = this.state.currentLayout
     if (this.state.user.token === ''){
       return (
         <>
@@ -38,7 +42,7 @@ export default class TravelDiaryApp extends React.Component{
               travel diary
             </h1>
           </div>
-          <HomeFrom
+          <HomeForm
             signup={signup}
             onSignupLoginChange={this.handleSignupLoginChange}
             onHandleUserLogin={this.handleUserLogin}/>
@@ -47,13 +51,11 @@ export default class TravelDiaryApp extends React.Component{
     }
     return (
       <>
-        {/* Possible de add elements behind the dock */}
-        {/*<div className="min-w-96">
-          <h1>Test Test</h1>
-        </div>*/}
-        <Navbar />
+        <ConnectedLayout
+        currentLayout={currentLayout}/>
       </>
     )
+
 
   }
 }
