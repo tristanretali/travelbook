@@ -1,7 +1,7 @@
 import React from 'react'
 import SignupForm from './components/ui-implementation/signup-form'
 import LoginForm from './components/ui-implementation/login-form'
-export default class HomeFrom extends React.Component{
+export default class HomeForm extends React.Component{
 
   render(){
     return(

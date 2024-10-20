@@ -20,6 +20,7 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className={cn("relative block md:hidden", className)}>
       <AnimatePresence>
@@ -69,6 +70,7 @@ const FloatingDockMobile = ({ items, className }) => {
 
 const FloatingDockDesktop = ({ items, className }) => {
   let mouseX = useMotionValue(Infinity);
+
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}

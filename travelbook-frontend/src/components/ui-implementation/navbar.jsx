@@ -1,12 +1,11 @@
 import React from "react";
 import { FloatingDock } from "../ui/floating-dock";
 import {
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
   IconHome,
-  IconNewSection,
-  IconTerminal2,
+  IconUser,
+  IconMap,
+  IconLogout,
+  IconNewSection
 } from "@tabler/icons-react";
 
 export default class Navbar extends React.Component{
@@ -20,44 +19,38 @@ export default class Navbar extends React.Component{
       href: "#",
     },
     {
-      title: "Products",
+      title: "My Trips",
       icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconMap className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
     },
     {
-      title: "Components",
+      title: "Personalize Trips",
       icon: (
         <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
     },
     {
-      title: "Changelog",
+      title: "My Account",
       icon: (
-        <IconExchange className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
     },
     {
-      title: "Twitter",
+      title: "Logout",
       icon: (
-        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-    {
-      title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
     },
   ];
+
   render(){
     return (
-      <div className="flex items-end justify-center h-[35rem] w-full">
+      <div className="fixed flex items-end justify-center h-[35rem] w-full">
         <FloatingDock
           items={this.links}
         />

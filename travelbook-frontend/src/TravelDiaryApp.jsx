@@ -47,7 +47,11 @@ export default class TravelDiaryApp extends React.Component{
     }
     return (
       <>
-        <Navbar/>
+        {/* Possible de add elements behind the dock */}
+        {/*<div className="min-w-96">
+          <h1>Test Test</h1>
+        </div>*/}
+        <Navbar />
       </>
     )
 
