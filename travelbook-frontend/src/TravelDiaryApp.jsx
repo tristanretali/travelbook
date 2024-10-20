@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeFrom from './HomeForm';
+import HomeForm from './HomeForm';
 import Navbar from './components/ui-implementation/navbar'
 
 export default class TravelDiaryApp extends React.Component{
