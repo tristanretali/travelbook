@@ -10,12 +10,14 @@ export default class HomeForm extends React.Component{
           this.props.signup === true ? <SignupForm
             signup={this.props.signup}
             onSignupLoginChange={this.props.onSignupLoginChange}
-            onHandleUserLogin={this.props.onHandleUserLogin}/>
+            onHandleUserLogin={this.props.onHandleUserLogin}
+            onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
             :
             <LoginForm
               signup={this.props.signup}
               onSignupLoginChange={this.props.onSignupLoginChange}
-              onHandleUserLogin={this.props.onHandleUserLogin}/>
+              onHandleUserLogin={this.props.onHandleUserLogin}
+              onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
         }
       </>
     )

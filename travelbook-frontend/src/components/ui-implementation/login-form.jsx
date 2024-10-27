@@ -29,6 +29,7 @@ export default class LoginForm extends React.Component{
             lastName: response.data.lastName,
             token: response.data.value
           })
+        this.props.onHandleLayoutChanging("home")
       })
       .catch((error) => {
         console.log(error);

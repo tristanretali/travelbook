@@ -1,6 +1,5 @@
 import React from 'react';
 import HomeForm from './HomeForm';
-import Navbar from './components/ui-implementation/navbar'
 import ConnectedLayout from './ConnectedLayout'
 
 export default class TravelDiaryApp extends React.Component{
@@ -8,6 +7,7 @@ export default class TravelDiaryApp extends React.Component{
     super(props);
     this.handleSignupLoginChange = this.handleSignupLoginChange.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
+    this.handleLayoutChanging = this.handleLayoutChanging.bind(this);
     this.state = {
       signup: true,
       user: {
@@ -26,12 +26,16 @@ export default class TravelDiaryApp extends React.Component{
 
   handleUserLogin(user){
     this.setState({user : user})
-    this.setState({currentLayout: 'home'})
+    /*this.setState({currentLayout: 'home'})*/
+  }
+
+  handleLayoutChanging(newLayout){
+    this.setState({currentLayout: newLayout})
   }
 
   render(){
     const signup = this.state.signup;
-    const currentLayout = this.state.currentLayout
+    const currentLayout = this.state.currentLayout;
     if (this.state.user.token === ''){
       return (
         <>
@@ -45,14 +49,16 @@ export default class TravelDiaryApp extends React.Component{
           <HomeForm
             signup={signup}
             onSignupLoginChange={this.handleSignupLoginChange}
-            onHandleUserLogin={this.handleUserLogin}/>
+            onHandleUserLogin={this.handleUserLogin}
+            onHandleLayoutChanging={this.handleLayoutChanging}/>
         </>
       )
     }
     return (
       <>
         <ConnectedLayout
-        currentLayout={currentLayout}/>
+        currentLayout={currentLayout}
+        onHandleUserLogin={this.handleUserLogin}/>
       </>
     )
 
