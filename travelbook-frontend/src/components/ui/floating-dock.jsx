@@ -8,17 +8,30 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef, useState } from "react";
+import React from "react";
 
-export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
-  return (
-    <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
-    </>
-  );
-};
+export default class FloatingDock extends React.Component {
+  render() {
+    const { items, desktopClassName, mobileClassName } = this.props;
 
-const FloatingDockMobile = ({ items, className }) => {
+    return (
+      <>
+        <FloatingDockDesktop
+          items={items}
+          className={desktopClassName}
+          currentLayout={this.props.currentLayout}
+          onHandleUserLogin={this.props.onHandleUserLogin}/>
+        <FloatingDockMobile
+          items={items}
+          className={mobileClassName}
+          currentLayout={this.props.currentLayout}
+          onHandleUserLogin={this.props.onHandleUserLogin}/>
+      </>
+    );
+  }
+}
+
+const FloatingDockMobile = ({ items, className, currentLayout, onHandleUserLogin }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -68,7 +81,7 @@ const FloatingDockMobile = ({ items, className }) => {
   );
 };
 
-const FloatingDockDesktop = ({ items, className }) => {
+const FloatingDockDesktop = ({ items, className, currentLayout, onHandleUserLogin }) => {
   let mouseX = useMotionValue(Infinity);
 
   return (
@@ -81,13 +94,17 @@ const FloatingDockDesktop = ({ items, className }) => {
       )}
     >
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer mouseX={mouseX}
+                       key={item.title} {...item}
+                       title={item.value}
+                       currentLayout={currentLayout}
+                       onHandleUserLogin={onHandleUserLogin}/>
       ))}
     </motion.div>
   );
 };
 
-function IconContainer({ mouseX, title, icon, href }) {
+function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserLogin }) {
   let ref = useRef(null);
 
   let distance = useTransform(mouseX, (val) => {
@@ -128,6 +145,20 @@ function IconContainer({ mouseX, title, icon, href }) {
   });
 
   const [hovered, setHovered] = useState(false);
+  function changeLayout(e){
+    const value = e.currentTarget.getAttribute('value')
+    if (value === "logout"){
+      onHandleUserLogin(
+        {
+          email: '',
+          firstName:'',
+          lastName: '',
+          token: ''
+        });
+    } else {
+      console.log(currentLayout);
+    }
+  }
 
   return (
     <a href={href}>
@@ -151,6 +182,8 @@ function IconContainer({ mouseX, title, icon, href }) {
           )}
         </AnimatePresence>
         <motion.div
+          onClick={changeLayout}
+          value={title}
           style={{ width: widthIcon, height: heightIcon }}
           className="flex items-center justify-center"
         >

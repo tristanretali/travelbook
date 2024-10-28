@@ -58,7 +58,8 @@ export default class TravelDiaryApp extends React.Component{
       <>
         <ConnectedLayout
         currentLayout={currentLayout}
-        onHandleUserLogin={this.handleUserLogin}/>
+        onHandleUserLogin={this.handleUserLogin}
+        onHandleLayoutChanging={this.handleLayoutChanging}/>
       </>
     )
 
