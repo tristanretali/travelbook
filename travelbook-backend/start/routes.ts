@@ -8,9 +8,9 @@
 */
 
 import router from '@adonisjs/core/services/router'
+const TripsController = () => import('#controllers/trips_controller')
 const UsersController = () => import('#controllers/users_controller')
 
-/*router.get('/', [UsersController, 'index'])*/
 router
   .group(() => {
     router.post('signup', [UsersController, 'signup'])
@@ -19,3 +19,9 @@ router
     /*router.get('users/all', [UsersController, 'all'])*/
   })
   .prefix('/api')
+
+router
+  .group(() => {
+    router.post('create', [TripsController, 'create'])
+  })
+  .prefix('/api/trip')

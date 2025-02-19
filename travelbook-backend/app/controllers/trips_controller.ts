@@ -1,7 +1,9 @@
 import TripService from '#services/trip_service'
 import { HttpContext } from '@adonisjs/core/http'
 import { creationTripValidator } from '#validators/trip'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export default class TripsController {
   constructor(protected tripService: TripService) {}
 
