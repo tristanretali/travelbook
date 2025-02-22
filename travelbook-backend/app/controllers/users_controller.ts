@@ -8,14 +8,9 @@ import { inject } from '@adonisjs/core'
 export default class UsersController {
   constructor(protected userService: UserService) {}
 
-  /*async all({ auth }: HttpContext) {
-    // Check if user authenticated to get access to the route
-    /!*await auth.authenticate()
-    if (auth.isAuthenticated) {
-      return User.all()
-    }*!/
+  async all() {
     return User.all()
-  }*/
+  }
 
   async signup({ request }: HttpContext) {
     const { email, password, firstname, lastname } = request.only([

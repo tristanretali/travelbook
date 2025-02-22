@@ -10,6 +10,9 @@ export default class Trip extends BaseModel {
   @column()
   declare tripName: string
 
+  @column()
+  declare userId: number
+
   @belongsTo(() => User)
   declare user: relations.BelongsTo<typeof User>
 
