@@ -24,5 +24,8 @@ export default class TripsController {
         // trips: await User.query().preload('trips').where('id', user.id).firstOrFail(),
       }
     }
+    return {
+      status: 'KO',
+    }
   }
 }
