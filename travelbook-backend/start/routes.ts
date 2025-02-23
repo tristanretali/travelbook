@@ -23,6 +23,7 @@ router
 router
   .group(() => {
     router.post('create', [TripsController, 'create'])
+    router.post('show', [TripsController, 'showUserTrips'])
     /*router.get('all', [TripsController, 'all'])*/
   })
   .prefix('/api/trip')
