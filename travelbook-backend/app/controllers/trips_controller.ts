@@ -1,6 +1,6 @@
 import TripService from '#services/trip_service'
 import { HttpContext } from '@adonisjs/core/http'
-import { creationTripValidator } from '#validators/trip'
+import { creationTripValidator, modifyTripValidator } from '#validators/trip'
 import { inject } from '@adonisjs/core'
 import User from '#models/user'
 
@@ -28,12 +28,23 @@ export default class TripsController {
     }
   }
 
+  async modifyUserTrip({ request, auth }: HttpContext) {
+    const { tripName, coverImage, tripId } = request.only(['tripName', 'coverImage', 'tripId'])
+    const user = await auth.authenticate()
+    if (auth.isAuthenticated) {
+      await request.validateUsing(modifyTripValidator)
+      console.log('trip name: ' + tripName)
+      console.log('cover image: ' + coverImage)
+      console.log('Trip id' + tripId)
+    }
+  }
+
   async showUserTrips({ auth }: HttpContext) {
     const user = await auth.authenticate()
     if (auth.isAuthenticated) {
       const userTrips = await User.query()
         .preload('trips', (query) => {
-          query.select('tripName', 'coverImage') // List only the fields you need
+          query.select('tripName', 'coverImage', 'id') // List only the fields you need
         })
         .where('id', user.id)
         .firstOrFail()
