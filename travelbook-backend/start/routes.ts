@@ -16,13 +16,13 @@ router
     router.post('signup', [UsersController, 'signup'])
     router.post('login', [UsersController, 'login'])
 
-    router.get('users/all', [UsersController, 'all'])
+    /*router.get('users/all', [UsersController, 'all'])*/
   })
   .prefix('/api')
 
 router
   .group(() => {
     router.post('create', [TripsController, 'create'])
-    router.get('all', [TripsController, 'all'])
+    /*router.get('all', [TripsController, 'all'])*/
   })
   .prefix('/api/trip')

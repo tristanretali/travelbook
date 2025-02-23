@@ -2,16 +2,14 @@ import TripService from '#services/trip_service'
 import { HttpContext } from '@adonisjs/core/http'
 import { creationTripValidator } from '#validators/trip'
 import { inject } from '@adonisjs/core'
-import Trip from '#models/trip'
-import User from '#models/user'
 
 @inject()
 export default class TripsController {
   constructor(protected tripService: TripService) {}
 
-  async all() {
+  /*async all() {
     return Trip.all()
-  }
+  }*/
 
   async create({ request, auth }: HttpContext) {
     const { tripName } = request.only(['tripName'])
@@ -22,8 +20,8 @@ export default class TripsController {
       await trip.save()
       return {
         status: 'OK',
-        // Return the trip list for the current user
-        trips: await User.query().preload('trips').where('id', user.id).firstOrFail(),
+        // Return the trip list for the current user (A revoir)
+        // trips: await User.query().preload('trips').where('id', user.id).firstOrFail(),
       }
     }
   }

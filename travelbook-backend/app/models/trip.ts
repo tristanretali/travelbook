@@ -13,6 +13,10 @@ export default class Trip extends BaseModel {
   @column()
   declare userId: number
 
+  // À revoir peut-être qu'il y a une autre manière de faire
+  @column()
+  declare coverImage: string
+
   @belongsTo(() => User)
   declare user: relations.BelongsTo<typeof User>
 
