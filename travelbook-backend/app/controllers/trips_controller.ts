@@ -31,8 +31,14 @@ export default class TripsController {
   async showUserTrips({ auth }: HttpContext) {
     const user = await auth.authenticate()
     if (auth.isAuthenticated) {
+      const userTrips = await User.query()
+        .preload('trips', (query) => {
+          query.select('tripName', 'coverImage') // List only the fields you need
+        })
+        .where('id', user.id)
+        .firstOrFail()
       return {
-        trips: await User.query().preload('trips').where('id', user.id).firstOrFail(),
+        trips: userTrips.trips,
       }
     }
   }
