@@ -12,11 +12,11 @@ export default class TripsController {
   }*/
 
   async create({ request, auth }: HttpContext) {
-    const { tripName } = request.only(['tripName'])
+    const { tripName, coverImage } = request.only(['tripName', 'coverImage'])
     const user = await auth.authenticate()
     if (auth.isAuthenticated) {
       await request.validateUsing(creationTripValidator)
-      const trip = await this.tripService.createTrip(tripName, user)
+      const trip = await this.tripService.createTrip(tripName, coverImage, user)
       await trip.save()
       return {
         status: 'OK',
