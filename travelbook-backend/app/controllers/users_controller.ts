@@ -41,6 +41,7 @@ export default class UsersController {
     const token = await User.accessTokens.create(user, ['*'], {
       expiresIn: '30 days',
     })
+
     return {
       email: user.email,
       firstName: user.firstName,
