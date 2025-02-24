@@ -59,7 +59,7 @@ export default class TripsController {
     if (auth.isAuthenticated) {
       const userTrips = await User.query()
         .preload('trips', (query) => {
-          query.select('tripName', 'coverImage', 'id') // List only the fields you need
+          query.select('tripName', 'coverImage', 'id')
         })
         .where('id', user.id)
         .firstOrFail()
