@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeForm from './HomeForm';
-import ConnectedLayout from './ConnectedLayout'
+import ConnectedLayout from './ConnectedLayout';
 
 export default class TravelDiaryApp extends React.Component{
   constructor(props) {

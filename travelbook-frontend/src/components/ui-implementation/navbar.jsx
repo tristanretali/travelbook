@@ -59,7 +59,8 @@ export default class Navbar extends React.Component{
         <FloatingDock
           items={this.links}
           currentLayout={this.props.currentLayout}
-          onHandleUserLogin={this.props.onHandleUserLogin}/>
+          onHandleUserLogin={this.props.onHandleUserLogin}
+          onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
       </div>
     )
   }

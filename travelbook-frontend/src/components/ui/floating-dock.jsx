@@ -20,18 +20,20 @@ export default class FloatingDock extends React.Component {
           items={items}
           className={desktopClassName}
           currentLayout={this.props.currentLayout}
-          onHandleUserLogin={this.props.onHandleUserLogin}/>
+          onHandleUserLogin={this.props.onHandleUserLogin}
+          onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
         <FloatingDockMobile
           items={items}
           className={mobileClassName}
           currentLayout={this.props.currentLayout}
-          onHandleUserLogin={this.props.onHandleUserLogin}/>
+          onHandleUserLogin={this.props.onHandleUserLogin}
+          onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
       </>
     );
   }
 }
 
-const FloatingDockMobile = ({ items, className, currentLayout, onHandleUserLogin }) => {
+const FloatingDockMobile = ({ items, className, currentLayout, onHandleUserLogin, onHandleLayoutChanging }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -81,7 +83,7 @@ const FloatingDockMobile = ({ items, className, currentLayout, onHandleUserLogin
   );
 };
 
-const FloatingDockDesktop = ({ items, className, currentLayout, onHandleUserLogin }) => {
+const FloatingDockDesktop = ({ items, className, currentLayout, onHandleUserLogin, onHandleLayoutChanging }) => {
   let mouseX = useMotionValue(Infinity);
 
   return (
@@ -98,13 +100,14 @@ const FloatingDockDesktop = ({ items, className, currentLayout, onHandleUserLogi
                        key={item.title} {...item}
                        title={item.value}
                        currentLayout={currentLayout}
-                       onHandleUserLogin={onHandleUserLogin}/>
+                       onHandleUserLogin={onHandleUserLogin}
+                       onHandleLayoutChanging={onHandleLayoutChanging}/>
       ))}
     </motion.div>
   );
 };
 
-function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserLogin }) {
+function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserLogin, onHandleLayoutChanging }) {
   let ref = useRef(null);
 
   let distance = useTransform(mouseX, (val) => {
@@ -147,6 +150,7 @@ function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserL
   const [hovered, setHovered] = useState(false);
   function changeLayout(e){
     const value = e.currentTarget.getAttribute('value')
+    //console.log(value)
     if (value === "logout"){
       onHandleUserLogin(
         {
@@ -155,8 +159,9 @@ function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserL
           lastName: '',
           token: ''
         });
-    } else {
-      console.log(currentLayout);
+    } else if (value === "myTrips"){
+      onHandleLayoutChanging(value)
+      console.log(value);
     }
   }
 
