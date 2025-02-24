@@ -159,9 +159,10 @@ function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserL
           lastName: '',
           token: ''
         });
+    }else if (value === "home"){
+      onHandleLayoutChanging(value)
     } else if (value === "myTrips"){
       onHandleLayoutChanging(value)
-      console.log(value);
     }
   }
 
