@@ -26,7 +26,6 @@ export default class TravelDiaryApp extends React.Component{
 
   handleUserLogin(user){
     this.setState({user : user})
-    /*this.setState({currentLayout: 'home'})*/
   }
 
   handleLayoutChanging(newLayout){

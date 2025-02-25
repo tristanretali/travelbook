@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/ui-implementation/navbar'
+import TripsDisplay from './components/ui-implementation/trips-display'
 
 export default class ConnectedLayout extends React.Component{
 
@@ -17,11 +18,12 @@ export default class ConnectedLayout extends React.Component{
     } else if (this.props.currentLayout === "myTrips"){
       return (
         <>
-          <h1 className="text-4xl font-bold">My trips</h1>
+          <TripsDisplay/>
           <Navbar
             currentLayout={this.props.currentLayout}
             onHandleUserLogin={this.props.onHandleUserLogin}
             onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
+
         </>
       )
 
