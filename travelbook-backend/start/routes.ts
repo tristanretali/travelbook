@@ -24,7 +24,7 @@ router
   .group(() => {
     router.post('create', [TripsController, 'create'])
     router.post('modify', [TripsController, 'modifyUserTrip'])
-    router.post('show', [TripsController, 'showUserTrips'])
+    router.get('show', [TripsController, 'showUserTrips'])
     /*router.get('all', [TripsController, 'all'])*/
   })
   .prefix('/api/trip')
