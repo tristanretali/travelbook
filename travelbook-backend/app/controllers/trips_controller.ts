@@ -61,7 +61,7 @@ export default class TripsController {
         .preload('trips', (query) => {
           query.select('tripName', 'coverImage', 'id')
         })
-        .where('id', user.id)
+        .where('email', user.email)
         .firstOrFail()
 
       return {
