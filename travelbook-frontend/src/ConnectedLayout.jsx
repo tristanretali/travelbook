@@ -18,7 +18,8 @@ export default class ConnectedLayout extends React.Component{
     } else if (this.props.currentLayout === "myTrips"){
       return (
         <>
-          <TripsDisplay/>
+          <TripsDisplay
+          user={this.props.user}/>
           <Navbar
             currentLayout={this.props.currentLayout}
             onHandleUserLogin={this.props.onHandleUserLogin}

@@ -5,7 +5,8 @@ export default class TripsDisplay extends React.Component{
   render() {
     return(
       <>
-        <Card/>
+        <Card
+        user={this.props.user}/>
       </>
     )
   }

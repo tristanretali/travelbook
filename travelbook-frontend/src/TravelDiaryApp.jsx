@@ -35,6 +35,7 @@ export default class TravelDiaryApp extends React.Component{
   render(){
     const signup = this.state.signup;
     const currentLayout = this.state.currentLayout;
+    const user = this.state.user
     if (this.state.user.token === ''){
       return (
         <>
@@ -58,7 +59,8 @@ export default class TravelDiaryApp extends React.Component{
         <ConnectedLayout
         currentLayout={currentLayout}
         onHandleUserLogin={this.handleUserLogin}
-        onHandleLayoutChanging={this.handleLayoutChanging}/>
+        onHandleLayoutChanging={this.handleLayoutChanging}
+        user={user}/>
       </>
     )
 
