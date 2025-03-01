@@ -35,7 +35,7 @@ export default class UsersController {
     const { email, password } = request.only(['email', 'password'])
     const user = await User.verifyCredentials(email, password)
     const token = await User.accessTokens.create(user, ['*'], {
-      expiresIn: '30 days',
+      expiresIn: '10 h',
     })
 
     return {
