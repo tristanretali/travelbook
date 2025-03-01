@@ -8,6 +8,7 @@ export default class TravelDiaryApp extends React.Component{
     this.handleSignupLoginChange = this.handleSignupLoginChange.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleLayoutChanging = this.handleLayoutChanging.bind(this);
+    this.handleUserTrips = this.handleUserTrips.bind(this);
     this.state = {
       signup: true,
       user: {
@@ -16,7 +17,8 @@ export default class TravelDiaryApp extends React.Component{
         lastName: '',
         token: ''
       },
-      currentLayout: ''
+      currentLayout: '',
+      userTrips: []
     };
   }
 
@@ -32,10 +34,15 @@ export default class TravelDiaryApp extends React.Component{
     this.setState({currentLayout: newLayout})
   }
 
+  handleUserTrips(userTrips){
+    this.setState({userTrips: userTrips})
+  }
+
   render(){
     const signup = this.state.signup;
     const currentLayout = this.state.currentLayout;
-    const user = this.state.user
+    const user = this.state.user;
+    const userTrips = this.state.userTrips;
     if (this.state.user.token === ''){
       return (
         <>
@@ -58,9 +65,11 @@ export default class TravelDiaryApp extends React.Component{
       <>
         <ConnectedLayout
         currentLayout={currentLayout}
+        user={user}
+        userTrips={userTrips}
         onHandleUserLogin={this.handleUserLogin}
         onHandleLayoutChanging={this.handleLayoutChanging}
-        user={user}/>
+        onHandleUserTrips={this.handleUserTrips}/>
       </>
     )
 

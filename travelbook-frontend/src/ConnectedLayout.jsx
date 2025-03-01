@@ -19,7 +19,9 @@ export default class ConnectedLayout extends React.Component{
       return (
         <>
           <TripsDisplay
-          user={this.props.user}/>
+          user={this.props.user}
+          userTrips={this.props.userTrips}
+          onHandleUserTrips={this.props.onHandleUserTrips}/>
           <Navbar
             currentLayout={this.props.currentLayout}
             onHandleUserLogin={this.props.onHandleUserLogin}

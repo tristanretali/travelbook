@@ -4,7 +4,8 @@ import { cn } from "../../utils/cn";
 export default class Card extends React.Component{
 
   render(){
-    const user = this.props.user
+    const user = this.props.user;
+    const trip = this.props.trip;
     return (
       <>
         <div className="max-w-xs w-full group/card">
@@ -24,7 +25,7 @@ export default class Card extends React.Component{
             </div>
             <div className="text content">
               <h1 className="font-bold text-xl md:text-2xl text-gray-50 text-left relative z-10">
-                Author Card
+                {trip.tripName}
               </h1>
             </div>
           </div>
