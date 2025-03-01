@@ -9,10 +9,6 @@ import Trip from '#models/trip'
 export default class TripsController {
   constructor(protected tripService: TripService) {}
 
-  /*async all() {
-    return Trip.all()
-  }*/
-
   async create({ request, auth }: HttpContext) {
     const { tripName, coverImage } = request.only(['tripName', 'coverImage'])
     const user = await auth.authenticate()

@@ -8,10 +8,6 @@ import { inject } from '@adonisjs/core'
 export default class UsersController {
   constructor(protected userService: UserService) {}
 
-  /*async all() {
-    return User.all()
-  }*/
-
   async signup({ request }: HttpContext) {
     const { email, password, firstname, lastname } = request.only([
       'email',
