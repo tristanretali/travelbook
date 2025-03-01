@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './components/ui-implementation/navbar'
 import TripsDisplay from './components/ui-implementation/trips-display'
+import TripCreationForm from './components/ui-implementation/trip-creation-form'
 
 export default class ConnectedLayout extends React.Component{
 
@@ -26,12 +27,21 @@ export default class ConnectedLayout extends React.Component{
             currentLayout={this.props.currentLayout}
             onHandleUserLogin={this.props.onHandleUserLogin}
             onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
-
         </>
       )
 
     }else if (this.props.currentLayout === "personalizeTrips"){
-
+      return (
+        <>
+          <TripCreationForm
+            user={this.props.user}
+            onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
+          <Navbar
+            currentLayout={this.props.currentLayout}
+            onHandleUserLogin={this.props.onHandleUserLogin}
+            onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
+        </>
+      )
     }else if (this.props.currentLayout === "myAccount"){
 
     }

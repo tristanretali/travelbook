@@ -150,7 +150,6 @@ function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserL
   const [hovered, setHovered] = useState(false);
   function changeLayout(e){
     const value = e.currentTarget.getAttribute('value')
-    //console.log(value)
     if (value === "logout"){
       onHandleUserLogin(
         {
@@ -159,9 +158,7 @@ function IconContainer({ mouseX, title, icon, href, currentLayout, onHandleUserL
           lastName: '',
           token: ''
         });
-    }else if (value === "home"){
-      onHandleLayoutChanging(value)
-    } else if (value === "myTrips"){
+    }else {
       onHandleLayoutChanging(value)
     }
   }
