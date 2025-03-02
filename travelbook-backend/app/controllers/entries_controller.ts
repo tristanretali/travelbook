@@ -3,6 +3,7 @@ import { creationEntryValidator } from '#validators/entry'
 import EntryService from '#services/entry_service'
 import { inject } from '@adonisjs/core'
 import Trip from '#models/trip'
+import Entry from '#models/entry'
 
 @inject()
 export default class EntriesController {
@@ -20,6 +21,22 @@ export default class EntriesController {
 
       return {
         status: 'OK',
+      }
+    }
+
+    return {
+      status: 'KO',
+    }
+  }
+
+  async show({ auth, params }: HttpContext) {
+    await auth.authenticate()
+
+    if (auth.isAuthenticated) {
+      const entry = await Entry.query().where('id', params.id).firstOrFail()
+
+      return {
+        entry: entry,
       }
     }
 

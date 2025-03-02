@@ -31,5 +31,6 @@ router
 router
   .group(() => {
     router.post('create', [EntriesController, 'create'])
+    router.get('show/:id', [EntriesController, 'show'])
   })
   .prefix('/api/entry')
