@@ -24,6 +24,7 @@ router
     router.post('create', [TripsController, 'create'])
     router.post('modify', [TripsController, 'modifyUserTrip'])
     router.get('show', [TripsController, 'showUserTrips'])
+    router.get('entries/:tripId', [TripsController, 'showEntries'])
   })
   .prefix('/api/trip')
 

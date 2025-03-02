@@ -4,6 +4,7 @@ import { creationTripValidator, modifyTripValidator } from '#validators/trip'
 import { inject } from '@adonisjs/core'
 import User from '#models/user'
 import Trip from '#models/trip'
+import Entry from '#models/entry'
 
 @inject()
 export default class TripsController {
@@ -62,6 +63,22 @@ export default class TripsController {
 
       return {
         trips: userTrips.trips,
+      }
+    }
+
+    return {
+      status: 'KO',
+    }
+  }
+
+  async showEntries({ auth, params }: HttpContext) {
+    await auth.authenticate()
+
+    if (auth.isAuthenticated) {
+      const tripEntries = await Entry.query().where('tripId', params.tripId)
+
+      return {
+        tripEntries: tripEntries,
       }
     }
 
