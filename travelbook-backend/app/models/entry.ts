@@ -10,6 +10,9 @@ export default class Entry extends BaseModel {
   @column()
   declare content: string
 
+  @column()
+  declare tripId: number
+
   @belongsTo(() => Trip)
   declare trip: BelongsTo<typeof Trip>
 
