@@ -9,6 +9,7 @@ export default class TravelDiaryApp extends React.Component{
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleLayoutChanging = this.handleLayoutChanging.bind(this);
     this.handleUserTrips = this.handleUserTrips.bind(this);
+    this.handleTripPageChanging = this.handleTripPageChanging.bind(this);
     this.state = {
       signup: true,
       user: {
@@ -18,6 +19,8 @@ export default class TravelDiaryApp extends React.Component{
         token: ''
       },
       currentLayout: '',
+      currentTripPage: 0,
+      tripsPerPage: 3,
       userTrips: []
     };
   }
@@ -38,11 +41,17 @@ export default class TravelDiaryApp extends React.Component{
     this.setState({userTrips: userTrips})
   }
 
+  handleTripPageChanging(newTripPage){
+    this.setState({currentTripPage: newTripPage})
+  }
+
   render(){
     const signup = this.state.signup;
     const currentLayout = this.state.currentLayout;
     const user = this.state.user;
     const userTrips = this.state.userTrips;
+    const currentTripPage = this.state.currentTripPage;
+    const tripsPerPage = this.state.tripsPerPage;
     if (this.state.user.token === ''){
       return (
         <>
@@ -67,9 +76,12 @@ export default class TravelDiaryApp extends React.Component{
         currentLayout={currentLayout}
         user={user}
         userTrips={userTrips}
+        currentTripPage={currentTripPage}
+        tripsPerPage={tripsPerPage}
         onHandleUserLogin={this.handleUserLogin}
         onHandleLayoutChanging={this.handleLayoutChanging}
-        onHandleUserTrips={this.handleUserTrips}/>
+        onHandleUserTrips={this.handleUserTrips}
+        onHandleTripPageChanging={this.handleTripPageChanging}/>
       </>
     )
 
