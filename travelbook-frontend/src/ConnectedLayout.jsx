@@ -46,7 +46,15 @@ export default class ConnectedLayout extends React.Component{
         </>
       )
     }else if (this.props.currentLayout === "myAccount"){
-
+      return (
+        <>
+          <h1>My Account</h1>
+          <Navbar
+            currentLayout={this.props.currentLayout}
+            onHandleUserLogin={this.props.onHandleUserLogin}
+            onHandleLayoutChanging={this.props.onHandleLayoutChanging}/>
+        </>
+      )
     }
   }
 }
