@@ -43,7 +43,15 @@ export default class TripsDisplay extends React.Component{
   }
 
   tripDetails(e){
-    this.props.onHandleShowTripDetailsChanging();
+    const url = `http://localhost:3333/api/trip/entries/${e.currentTarget.getAttribute("data")}`
+    const headers = {'Authorization': 'Bearer ' + this.props.user.token};
+    axios.get(url, {headers})
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   render() {
