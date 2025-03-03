@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../ui/card'
+import TripNavigation from '../ui/trip-navigation'
 import axios from 'axios'
 
 export default class TripsDisplay extends React.Component{
@@ -47,25 +48,24 @@ export default class TripsDisplay extends React.Component{
     const displayTrips = userTrips.slice(startIndex, startIndex + tripsPerPage);
     return(
       <>
-        {displayTrips.map((trip) => (
-          <Card
-            key={trip.id}
-            user={this.props.user}
-            trip={trip}/>
-        ))}
-
-        <div style={{ zIndex: '10' }}>
-          <button onClick={this.prevPage} disabled={currentPage === 0}>
-            Previous
-          </button>
-          <button
-            onClick={this.nextPage}
-            disabled={(currentPage + 1) * tripsPerPage >= userTrips.length}
-          >
-            Next
-          </button>
+        <div className="w-full flex flex-col">
+          <div className="flex justify-around">
+            {displayTrips.map((trip) => (
+              <Card
+                key={trip.id}
+                user={this.props.user}
+                trip={trip}/>
+            ))}
+          </div>
+          <div className="flex justify-between mt-5 mb-10 ml-10 mr-10">
+            <TripNavigation
+              content={"← Previous"}
+              action={this.prevPage}/>
+            <TripNavigation
+              content={"Next → "}
+              action={this.nextPage}/>
+          </div>
         </div>
-
       </>
     )
   }
