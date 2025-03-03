@@ -8,7 +8,7 @@ export default class Card extends React.Component{
     const trip = this.props.trip;
     return (
       <>
-        <div className="max-w-xs w-full group/card">
+        <div onClick={this.props.tripDetails} className="max-w-xs w-full group/card z-10">
           <div
             className={cn(
               "cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4",
