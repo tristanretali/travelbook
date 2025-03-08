@@ -47,7 +47,8 @@ export default class TripsDisplay extends React.Component{
     const headers = {'Authorization': 'Bearer ' + this.props.user.token};
     axios.get(url, {headers})
       .then((response) => {
-        console.log(response.data)
+        this.props.onHandleTripEntriesChanging(response.data.tripEntries)
+        this.props.onHandleShowTripDetailsChanging()
       })
       .catch((error) => {
         console.log(error);
@@ -61,6 +62,7 @@ export default class TripsDisplay extends React.Component{
     const showTripDetails = this.props.showTripDetails;
     const startIndex = currentPage * tripsPerPage;
     const displayTrips = userTrips.slice(startIndex, startIndex + tripsPerPage);
+    const tripEntries = this.props.tripEntries;
     if (!showTripDetails){
       return(
         <>
@@ -88,7 +90,8 @@ export default class TripsDisplay extends React.Component{
     }
     return (
       <>
-        <TripView/>
+        <TripView
+        tripEntries={tripEntries}/>
       </>
     )
   }

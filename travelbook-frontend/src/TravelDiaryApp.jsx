@@ -11,6 +11,7 @@ export default class TravelDiaryApp extends React.Component{
     this.handleUserTrips = this.handleUserTrips.bind(this);
     this.handleTripPageChanging = this.handleTripPageChanging.bind(this);
     this.handleShowTripDetailsChanging = this.handleShowTripDetailsChanging.bind(this);
+    this.handleTripEntriesChanging = this.handleTripEntriesChanging.bind(this);
     this.state = {
       signup: true,
       user: {
@@ -24,6 +25,7 @@ export default class TravelDiaryApp extends React.Component{
       tripsPerPage: 3,
       userTrips: [],
       showTripDetails: false,
+      tripEntries: [],
     };
   }
 
@@ -51,6 +53,10 @@ export default class TravelDiaryApp extends React.Component{
     this.setState({showTripDetails: !this.state.showTripDetails})
   }
 
+  handleTripEntriesChanging(tripEntries){
+    this.setState({tripEntries: tripEntries})
+  }
+
   render(){
     const signup = this.state.signup;
     const currentLayout = this.state.currentLayout;
@@ -59,6 +65,7 @@ export default class TravelDiaryApp extends React.Component{
     const currentTripPage = this.state.currentTripPage;
     const tripsPerPage = this.state.tripsPerPage;
     const showTripDetails = this.state.showTripDetails;
+    const tripEntries = this.state.tripEntries;
     if (this.state.user.token === ''){
       return (
         <>
@@ -86,11 +93,13 @@ export default class TravelDiaryApp extends React.Component{
         currentTripPage={currentTripPage}
         tripsPerPage={tripsPerPage}
         showTripDetails={showTripDetails}
+        tripEntries={tripEntries}
         onHandleUserLogin={this.handleUserLogin}
         onHandleLayoutChanging={this.handleLayoutChanging}
         onHandleUserTrips={this.handleUserTrips}
         onHandleTripPageChanging={this.handleTripPageChanging}
-        onHandleShowTripDetailsChanging={this.handleShowTripDetailsChanging}/>
+        onHandleShowTripDetailsChanging={this.handleShowTripDetailsChanging}
+        onHandleTripEntriesChanging={this.handleTripEntriesChanging}/>
       </>
     )
 
